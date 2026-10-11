@@ -20,11 +20,15 @@
                     },
                     colors: {
                         brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#2563eb',
-                            600: '#1d4ed8',
-                            700: '#1e40af',
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                        },
+                        violetBrand: {
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
                         }
                     }
                 }
@@ -33,78 +37,189 @@
     </script>
 
     <style>
+        /* Increased Custom Star Cursor */
+        * {
+            cursor: default !important;
+        }
+        a, button, input, textarea, label, [role="button"], .interactive-card {
+            cursor: pointer !important;
+        }
+        .custom-cursor {
+            width: 32px;
+            height: 32px;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, opacity 0.2s ease;
+            color: #db2777;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 0 16px rgba(219, 39, 119, 0.7);
+        }
+        .dark .custom-cursor {
+            color: #a78bfa;
+            text-shadow: 0 0 16px rgba(167, 139, 250, 0.9);
+        }
+
+        /* Enhanced Artistic Glassmorphism & Depth */
         .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(226, 232, 240, 0.9);
+            background: rgba(255, 241, 242, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(244, 114, 182, 0.45);
+            box-shadow: 0 25px 50px -12px rgba(244, 63, 94, 0.15), 0 10px 20px rgba(244, 63, 94, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .dark .glass-card {
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(51, 65, 85, 0.6);
+            background: rgba(15, 23, 42, 0.82);
+            border: 1px solid rgba(51, 65, 85, 0.7);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 25px rgba(124, 58, 237, 0.08);
         }
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(219, 39, 119, 0.8);
+            box-shadow: 0 35px 70px -15px rgba(219, 39, 119, 0.3);
+        }
+        .dark .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 30px 60px -15px rgba(139, 92, 246, 0.25);
+        }
+
+        /* 3D Animated Icon Box Effect */
+        .icon-3d {
+            background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(236, 72, 153, 0.08));
+            border: 1px solid rgba(244, 63, 94, 0.4);
+            box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.9), 0 10px 20px -4px rgba(244, 63, 94, 0.25);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+        .dark .icon-3d {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(15, 23, 42, 0.7));
+            border: 1px solid rgba(139, 92, 246, 0.45);
+            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.15), 0 10px 25px -4px rgba(139, 92, 246, 0.3);
+        }
+        .icon-3d:hover {
+            transform: translateY(-5px) rotate(8deg) scale(1.1);
+        }
+
         .clean-card {
-            background-color: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            background-color: rgba(255, 242, 244, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(244, 114, 182, 0.4);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .dark .clean-card {
-            background-color: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background-color: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(51, 65, 85, 0.6);
         }
         .clean-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            border-color: rgba(219, 39, 119, 0.7);
+            box-shadow: 0 20px 40px -10px rgba(219, 39, 119, 0.2);
         }
+        .dark .clean-card:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 20px 40px -10px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Floating Animation for Visual Polish */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        /* Artistic Background Mesh Grid */
+        .bg-mesh {
+            background-size: 60px 60px;
+            background-image: linear-gradient(to right, rgba(244, 63, 94, 0.06) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(244, 63, 94, 0.06) 1px, transparent 1px);
+        }
+        .dark .bg-mesh {
+            background-image: linear-gradient(to right, rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+        }
+
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0b1329;
+            background: #fff1f2;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #090d16;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e293b;
+            background: #f43f5e;
             border-radius: 4px;
         }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+        }
         ::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
+            background: #be185d;
         }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-300 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+<body class="bg-[#fff5f7] dark:bg-slate-950 text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-300 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white bg-mesh">
 
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <!-- Custom Star Cursor Element -->
+    <div id="star-cursor" class="custom-cursor hidden sm:flex">
+        <i class="fa-solid fa-star"></i>
+    </div>
+
+    <!-- Navigation Bar with 3D Animated Icons -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/85 backdrop-blur-xl border-b border-rose-200 dark:border-slate-800 transition-colors shadow-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex items-center justify-between h-20">
                 <!-- Brand / Logo -->
-                <a href="#hero" class="flex items-center space-x-2.5 group">
-                    <span class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/30 text-brand-600 dark:text-brand-400 flex items-center justify-center font-mono font-semibold text-xs shadow-sm">
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <span class="w-10 h-10 rounded-2xl icon-3d flex items-center justify-center font-mono font-bold text-sm text-brand-600 dark:text-brand-400 group-hover:scale-110 transition-transform">
                         &gt;_
                     </span>
-                    <span class="font-mono text-sm sm:text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                    <span class="font-mono text-sm sm:text-base font-bold tracking-tight text-slate-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
                         judhbryce.lobarbio<span class="text-brand-600 dark:text-brand-400">.sys</span>
                     </span>
                 </a>
 
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex items-center space-x-8 text-xs font-mono font-medium">
-                    <a href="#about" class="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">// 01. About</a>
-                    <a href="#skills" class="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">// 02. Skills</a>
-                    <a href="#leadership" class="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">// 03. Leadership & Events</a>
-                    <a href="#contact" class="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">// 04. Contact</a>
+                <!-- Desktop Navigation Links with 3D Icons -->
+                <nav class="hidden md:flex items-center space-x-5 text-xs font-mono font-semibold">
+                    <a href="#about" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-rose-100/70 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all">
+                        <span class="w-7 h-7 rounded-lg icon-3d flex items-center justify-center text-xs text-brand-600 dark:text-brand-400"><i class="fa-solid fa-user-astronaut"></i></span>
+                        <span>01. About</span>
+                    </a>
+                    <a href="#skills" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-rose-100/70 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all">
+                        <span class="w-7 h-7 rounded-lg icon-3d flex items-center justify-center text-xs text-brand-600 dark:text-brand-400"><i class="fa-solid fa-chart-line"></i></span>
+                        <span>02. Skills</span>
+                    </a>
+                    <a href="#memories" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-rose-100/70 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all">
+                        <span class="w-7 h-7 rounded-lg icon-3d flex items-center justify-center text-xs text-brand-600 dark:text-brand-400"><i class="fa-solid fa-images"></i></span>
+                        <span>03. Gallery</span>
+                    </a>
+                    <a href="#leadership" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-rose-100/70 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 transition-all">
+                        <span class="w-7 h-7 rounded-lg icon-3d flex items-center justify-center text-xs text-brand-600 dark:text-brand-400"><i class="fa-solid fa-users-gear"></i></span>
+                        <span>04. Roles</span>
+                    </a>
                 </nav>
 
                 <!-- Actions: Theme Toggle & Connect CTA & Mobile Menu -->
                 <div class="flex items-center space-x-3">
-                    <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200 dark:border-slate-700">
+                    <button id="theme-toggle" type="button" aria-label="Toggle theme" class="p-2.5 text-slate-700 dark:text-slate-300 hover:bg-rose-100 dark:hover:bg-slate-800 rounded-xl transition-colors border border-rose-300 dark:border-slate-700 shadow-xs icon-3d">
                         <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-sm hidden"></i>
                         <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-sm"></i>
                     </button>
 
-                    <a href="#contact" class="hidden sm:flex px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium text-white bg-brand-600 hover:bg-brand-700 transition-colors items-center gap-1.5 shadow-sm">
-                        <i class="fa-regular fa-paper-plane text-[10px]"></i>
+                    <a href="#contact" class="hidden sm:flex px-4 py-2 rounded-xl text-xs font-mono font-bold text-white bg-brand-600 hover:bg-brand-700 transition-all items-center gap-2 shadow-md shadow-brand-500/25 icon-3d">
+                        <i class="fa-regular fa-paper-plane text-xs"></i>
                         <span>Connect</span>
                     </a>
 
-                    <button id="mobile-menu-btn" type="button" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700" aria-label="Toggle menu">
+                    <button id="mobile-menu-btn" type="button" class="md:hidden p-2.5 text-slate-700 dark:text-slate-300 hover:bg-rose-100 dark:hover:bg-slate-800 rounded-xl border border-rose-300 dark:border-slate-700 icon-3d" aria-label="Toggle menu">
                         <i class="fa-solid fa-bars text-lg"></i>
                     </button>
                 </div>
@@ -112,70 +227,68 @@
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-2 font-mono text-xs">
-            <a href="#about" class="block px-3 py-2 rounded-md font-medium text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800">// 01. About</a>
-            <a href="#skills" class="block px-3 py-2 rounded-md font-medium text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800">// 02. Skills</a>
-            <a href="#leadership" class="block px-3 py-2 rounded-md font-medium text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800">// 03. Leadership & Events</a>
-            <a href="#contact" class="block px-3 py-2 rounded-md font-medium text-slate-700 dark:text-slate-300 hover:text-brand-600 dark:hover:text-brand-400 hover:bg-slate-100 dark:hover:bg-slate-800">// 04. Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden border-b border-rose-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg px-4 pt-3 pb-5 space-y-2 font-mono text-xs">
+            <a href="#about" class="flex items-center gap-3 px-3 py-2 rounded-xl font-medium text-slate-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-800"><i class="fa-solid fa-user-astronaut text-brand-600"></i> // 01. About</a>
+            <a href="#skills" class="flex items-center gap-3 px-3 py-2 rounded-xl font-medium text-slate-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-800"><i class="fa-solid fa-chart-line text-brand-600"></i> // 02. Skills</a>
+            <a href="#memories" class="flex items-center gap-3 px-3 py-2 rounded-xl font-medium text-slate-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-800"><i class="fa-solid fa-images text-brand-600"></i> // 03. Gallery</a>
+            <a href="#leadership" class="flex items-center gap-3 px-3 py-2 rounded-xl font-medium text-slate-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-800"><i class="fa-solid fa-users-gear text-brand-600"></i> // 04. Roles</a>
+            <a href="#contact" class="flex items-center gap-3 px-3 py-2 rounded-xl font-medium text-slate-700 dark:text-slate-300 hover:bg-rose-50 dark:hover:bg-slate-800"><i class="fa-regular fa-paper-plane text-brand-600"></i> // 05. Contact</a>
         </div>
     </header>
 
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section id="hero" class="py-12 lg:py-20 border-b border-slate-200 dark:border-slate-800/80">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-14">
+        <section id="hero" class="py-16 lg:py-28 relative overflow-hidden">
+            <!-- Decorative Ambient Glow -->
+            <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-brand-500/25 to-pink-400/25 dark:from-brand-600/20 dark:to-indigo-500/20 blur-[150px] pointer-events-none rounded-full"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                     
-                    <!-- Left: Profile Photo with Upload Preview -->
-                    <div class="flex flex-col items-center">
-                        <div class="relative group">
-                            <div class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl bg-slate-200 dark:bg-slate-800">
-                                <img id="profile-img" src="bry.jpeg" alt="Judh Bryce P. Lobarbio" class="w-full h-full object-cover">
+                    <!-- Left: Profile Photo with Floating 3D Frame & Upload Preview -->
+                    <div class="flex flex-col items-center animate-float">
+                        <div class="relative group p-3 rounded-3xl bg-gradient-to-br from-brand-500/70 via-rose-300/60 to-pink-600/70 dark:from-brand-500/50 dark:via-slate-500/20 dark:to-indigo-600/50 shadow-2xl">
+                            <div class="relative w-52 h-52 sm:w-60 sm:h-60 rounded-2xl overflow-hidden bg-rose-100 dark:bg-slate-800">
+                                <img id="profile-img" src="bry.jpeg" alt="Judh Bryce P. Lobarbio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                                 
-                                <label for="photo-upload" class="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-center p-3">
-                                    <i class="fa-solid fa-camera text-blue-400 text-xl mb-1.5"></i>
-                                    <span class="text-xs font-mono text-slate-200 font-medium">Click to Upload Photo</span>
-                                    <span class="text-[10px] font-mono text-slate-400 mt-1">(Local Preview)</span>
-                                </label>
-                                <input type="file" id="photo-upload" accept="image/*" class="hidden" onchange="previewPhoto(event)">
                             </div>
                         </div>
                         
-                        <div class="mt-3 flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span class="text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Active Student Leader</span>
+                        <div class="mt-5 flex items-center gap-2.5 px-4.5 py-2 rounded-full bg-white/95 dark:bg-slate-900/90 border border-rose-300 dark:border-slate-800 backdrop-blur-md shadow-md icon-3d">
+                            <span class="w-4 h-4 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Active Student Leader & CS Major</span>
                         </div>
                     </div>
 
-                    <!-- Right: Info & Buttons -->
+                    <!-- Right: Info & Artistic Typography -->
                     <div class="flex-1 text-center lg:text-left">
-                        <div class="inline-block px-3 py-1 rounded-md text-xs font-mono bg-brand-50 dark:bg-brand-950 text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-800 mb-3">
-                            PUP College of Computer and Information Sciences
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono bg-rose-100 dark:bg-brand-950/80 text-brand-700 dark:text-brand-300 border border-rose-300 dark:border-brand-800/80 mb-5 shadow-xs font-bold">
+                            <i class="fa-solid fa-terminal text-[10px]"></i> PUP College of Computer and Information Sciences
                         </div>
 
-                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
                             Judh Bryce P. Lobarbio
                         </h1>
                         
-                        <p class="text-lg sm:text-xl font-medium text-brand-600 dark:text-brand-400 mb-4">
+                        <p class="text-xl sm:text-2xl font-bold text-brand-600 dark:text-brand-400 mb-5">
                             Aspiring Data Analyst & Executive Student Leader
                         </p>
 
-                        <p class="text-slate-600 dark:text-slate-300 text-base leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-6">
-                            Computer Science student dedicated to leveraging data analytics, organized event campaigns, and student advocacy to drive meaningful impact within tech communities and campus leadership.
+                        <p class="text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8 font-medium">
+                            Second-year Computer Science scholar at Polytechnic University of the Philippines. Dedicated to bridging rigorous technical data operations, multi-tier organizational leadership, and student advocacy for community empowerment.
                         </p>
 
                         <!-- Header CTA Buttons -->
-                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3">
-                            <a href="#leadership" class="px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-md transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-users text-xs"></i> View Experience
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                            <a href="#memories" class="px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-xl shadow-brand-500/30 transition-all flex items-center gap-2.5 icon-3d hover:-translate-y-1">
+                                <i class="fa-solid fa-camera-retro text-xs"></i> View Gallery & Memories
                             </a>
                             
-                            <a href="#contact" class="px-5 py-2.5 rounded-lg bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 font-semibold text-sm shadow-sm transition-all flex items-center gap-2">
+                            <a href="#contact" class="px-6 py-3 rounded-xl bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white text-white dark:text-slate-900 font-bold text-sm shadow-lg transition-all flex items-center gap-2.5 icon-3d hover:-translate-y-1">
                                 <i class="fa-regular fa-paper-plane text-xs"></i> Get In Touch
                             </a>
 
-                            <button onclick="copyResumeLink()" class="px-5 py-2.5 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold border border-slate-300 dark:border-slate-700 shadow-sm transition-all flex items-center gap-2">
+                            <button onclick="copyResumeLink()" class="px-6 py-3 rounded-xl bg-white/95 dark:bg-slate-900/90 hover:bg-rose-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-sm font-bold border border-rose-300 dark:border-slate-800 shadow-md transition-all flex items-center gap-2.5 backdrop-blur-md icon-3d hover:-translate-y-1">
                                 <i class="fa-solid fa-file-arrow-down text-brand-600 dark:text-brand-400"></i> Resume / CV
                             </button>
                         </div>
@@ -185,56 +298,56 @@
             </div>
         </section>
 
-        <!-- Focus & Skills Overview Cards -->
-        <section class="py-10 bg-slate-100/70 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80">
+        <!-- Focus & Substance Overview Cards with 3D Icons -->
+        <section class="py-14 bg-white/80 dark:bg-slate-900/40 border-y border-rose-200 dark:border-slate-800/80 backdrop-blur-md">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     
-                    <div class="glass-card rounded-xl p-5 shadow-sm">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="p-2 rounded-md bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400">
-                                <i class="fa-solid fa-shield-halved text-lg"></i>
+                    <div class="glass-card rounded-3xl p-7 shadow-md">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl">
+                                <i class="fa-solid fa-shield-halved"></i>
                             </div>
                             <div>
-                                <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">Current Status</h3>
-                                <p class="text-sm font-bold text-slate-900 dark:text-white">Active Student Leader</p>
+                                <h3 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 font-mono">Current Status</h3>
+                                <p class="text-sm font-extrabold text-slate-900 dark:text-white">Active Student Leader</p>
                             </div>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Serving in student council committees, leadership bootcamps, and executive officer tracks across campus organizations.
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-semibold">
+                            Directing campaigns for the PUP CCIS Student Council, guiding department initiatives, and spearheading student welfare advocacy across academic tracks.
                         </p>
                     </div>
 
-                    <div class="glass-card rounded-xl p-5 shadow-sm">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="p-2 rounded-md bg-brand-100 dark:bg-brand-950 text-brand-600 dark:text-brand-400">
-                                <i class="fa-solid fa-bullseye text-lg"></i>
+                    <div class="glass-card rounded-3xl p-7 shadow-md">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-brand-600 dark:text-brand-400 text-xl">
+                                <i class="fa-solid fa-bullseye"></i>
                             </div>
                             <div>
-                                <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">Current Focus</h3>
-                                <p class="text-sm font-bold text-slate-900 dark:text-white">Data Analytics & Operations</p>
+                                <h3 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 font-mono">Current Focus</h3>
+                                <p class="text-sm font-extrabold text-slate-900 dark:text-white">Data Analytics & Operations</p>
                             </div>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            Building skills in SQL, Python data workflows, spreadsheet modeling, and executing educational campus campaigns.
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-semibold">
+                            Expanding proficiency in database querying, Python scripting for data workflows, spreadsheet modeling, and quantitative metrics structuring.
                         </p>
                     </div>
 
-                    <div class="glass-card rounded-xl p-5 shadow-sm">
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="p-2 rounded-md bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
-                                <i class="fa-solid fa-layer-group text-lg"></i>
+                    <div class="glass-card rounded-3xl p-7 shadow-md">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xl">
+                                <i class="fa-solid fa-layer-group"></i>
                             </div>
                             <div>
-                                <h3 class="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500">Primary Skill Set</h3>
-                                <p class="text-sm font-bold text-slate-900 dark:text-white">Analytics & Leadership Ops</p>
+                                <h3 class="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 font-mono">Primary Skill Set</h3>
+                                <p class="text-sm font-extrabold text-slate-900 dark:text-white">Analytics & Leadership Ops</p>
                             </div>
                         </div>
-                        <div class="flex flex-wrap gap-1.5 mt-2">
-                            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Excel / Sheets</span>
-                            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">SQL</span>
-                            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Python</span>
-                            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Campaign Operations</span>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="px-3 py-1 rounded-xl text-xs font-mono font-bold bg-rose-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-rose-300 dark:border-slate-700">Excel / Sheets</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-mono font-bold bg-rose-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-rose-300 dark:border-slate-700">SQL Queries</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-mono font-bold bg-rose-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-rose-300 dark:border-slate-700">Python Data</span>
+                            <span class="px-3 py-1 rounded-xl text-xs font-mono font-bold bg-rose-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-rose-300 dark:border-slate-700">Campaign Logistics</span>
                         </div>
                     </div>
 
@@ -243,56 +356,56 @@
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="py-16 border-b border-slate-200 dark:border-slate-800/80">
+        <section id="about" class="py-20 relative">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="mb-8">
-                    <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-1">// 01. Profile</div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">About Me</h2>
+                <div class="mb-10">
+                    <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-1 font-bold">// 01. Profile Background</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">About Me</h2>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     
-                    <div class="lg:col-span-2 glass-card p-6 sm:p-7 rounded-xl space-y-4 text-slate-700 dark:text-slate-300 leading-relaxed text-sm shadow-sm">
-                        <p>
-                            I am a Computer Science student at the <strong class="text-slate-900 dark:text-white font-semibold">Polytechnic University of the Philippines (PUP)</strong> with an active track record in student governance, organizational leadership, and community events.
+                    <div class="lg:col-span-2 glass-card p-8 sm:p-10 rounded-3xl space-y-5 text-slate-700 dark:text-slate-300 leading-relaxed text-sm sm:text-base shadow-xl">
+                        <p class="font-semibold">
+                            I am a second-year student pursuing a <strong class="text-slate-900 dark:text-white font-extrabold">Bachelor of Science in Computer Science</strong> at the <strong class="text-slate-900 dark:text-white font-extrabold">Polytechnic University of the Philippines (PUP)</strong> Sta. Mesa campus. My academic journey combines deep technical problem-solving with high-level organizational leadership.
                         </p>
-                        <p>
-                            Through executive positions in tech organizations and active roles in university campaigns, I specialize in organizing committees, leading educational discussions, and coordinating student advocacy projects.
+                        <p class="font-medium">
+                            Across multiple university-wide committees, student council initiatives, and developer guilds, I have coordinated large-scale campus events, moderated educational discussions, and managed logistics for regional tech meetups.
                         </p>
-                        <p>
-                            As an <strong class="text-brand-600 dark:text-brand-400 font-semibold">Aspiring Data Analyst</strong>, I am actively expanding my analytical foundation—focusing on quantitative research, spreadsheet modeling, and fundamental data processing techniques.
+                        <p class="font-medium">
+                            As an <strong class="text-brand-600 dark:text-brand-400 font-bold">Aspiring Data Analyst</strong>, I merge my technical computer science coursework with structured data workflows—building foundational competence in relational databases, spreadsheet modeling, and automated data processing.
                         </p>
                         
-                        <div class="pt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-                            <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
-                                <span class="text-slate-500 uppercase block text-[10px]">Education</span>
-                                <span class="text-slate-800 dark:text-slate-200 font-medium">BS Computer Science (PUP)</span>
+                        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+                            <div class="p-5 rounded-2xl bg-white/95 dark:bg-slate-900/85 border border-rose-200 dark:border-slate-800 shadow-sm">
+                                <span class="text-slate-500 uppercase block text-[10px] mb-1 font-extrabold"> Academic Institution</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-bold"> Polytechnic University of the Philippines</span>
                             </div>
-                            <div class="p-3 rounded-lg bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
-                                <span class="text-slate-500 uppercase block text-[10px]">Primary Goal</span>
-                                <span class="text-brand-600 dark:text-brand-400 font-medium">Data Analytics & Research</span>
+                            <div class="p-5 rounded-2xl bg-white/95 dark:bg-slate-900/85 border border-rose-200 dark:border-slate-800 shadow-sm">
+                                <span class="text-slate-500 uppercase block text-[10px] mb-1 font-extrabold"> Core Interest</span>
+                                <span class="text-brand-600 dark:text-brand-400 font-bold"> Data Analytics & Systems Operations</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-3">
-                        <div class="glass-card p-5 rounded-xl border-l-2 border-l-brand-600 dark:border-l-brand-500 shadow-sm">
-                            <div class="text-[11px] font-mono text-brand-600 dark:text-brand-400 mb-1">CURRENT EXECUTIVE ROLE</div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Campaign Head</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">PUP CCIS Student Council (PAC Committee)</p>
+                    <div class="space-y-4">
+                        <div class="glass-card p-6 rounded-3xl border-l-6 border-l-brand-600 dark:border-l-brand-500 shadow-md">
+                            <div class="text-[11px] font-mono text-brand-600 dark:text-brand-400 mb-1 font-extrabold">CURRENT EXECUTIVE ROLE</div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Campaign Head</h3>
+                            <p class="text-xs text-slate-700 dark:text-slate-300 mt-1 font-semibold">PUP CCIS Student Council (People's Advocacies & Campaigns Committee)</p>
                         </div>
 
-                        <div class="glass-card p-5 rounded-xl border-l-2 border-l-slate-400 shadow-sm">
-                            <div class="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-1">TECH COMMUNITY</div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Community Engagement Lead</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">PUP Microsoft Campus Club</p>
+                        <div class="glass-card p-6 rounded-3xl border-l-6 border-l-cyan-500 shadow-md">
+                            <div class="text-[11px] font-mono text-cyan-600 dark:text-cyan-400 mb-1 font-extrabold">TECH COMMUNITY</div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Community Engagement Lead</h3>
+                            <p class="text-xs text-slate-700 dark:text-slate-300 mt-1 font-semibold">PUP Microsoft Campus Club</p>
                         </div>
 
-                        <div class="glass-card p-5 rounded-xl border-l-2 border-l-brand-500 shadow-sm">
-                            <div class="text-[11px] font-mono text-brand-600 dark:text-brand-400 mb-1">ACADEMIC GUILD</div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Research and Assessment Head</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1">PUP The Programmers’ Guild</p>
+                        <div class="glass-card p-6 rounded-3xl border-l-6 border-l-indigo-500 shadow-md">
+                            <div class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 mb-1 font-extrabold">ACADEMIC GUILD</div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Research and Assessment Head</h3>
+                            <p class="text-xs text-slate-700 dark:text-slate-300 mt-1 font-semibold">PUP The Programmers’ Guild</p>
                         </div>
                     </div>
 
@@ -301,52 +414,64 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-14 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <!-- Skills & Technical Depth Section -->
+        <section id="skills" class="py-20 bg-white/80 dark:bg-slate-900/60 border-y border-rose-200 dark:border-slate-800 backdrop-blur-md">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-8 flex items-center gap-2">
-                    <i class="fa-solid fa-chart-simple text-brand-600 dark:text-brand-400 text-lg"></i> Technical & Organizational Capabilities
-                </h2>
+                <div class="mb-10">
+                    <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-1 font-bold">// 02. Technical & Operations Stack</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
+                        Capabilities & Proficiencies
+                    </h2>
+                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Spreadsheet Modeling</h3>
-                            <span class="px-2 py-0.5 rounded text-xs font-bold bg-brand-100 dark:bg-brand-950 text-brand-700 dark:text-brand-300">INTERMEDIATE</span>
+                    <div class="glass-card p-8 rounded-3xl border border-rose-200 dark:border-slate-800 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-extrabold text-slate-900 dark:text-white text-lg">Spreadsheet Modeling</h3>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-mono font-extrabold bg-brand-500/15 text-brand-700 dark:text-brand-300 border border-brand-500/30">INTERMEDIATE</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-6 font-semibold leading-relaxed">Advanced formulas, conditional data cleaning, pivot reporting, and organized financial/operational record tracking using Microsoft Excel and Google Sheets.</p>
                         </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-400 mb-4">Experienced with Microsoft Excel & Google Sheets for data structuring, formulas, data cleanup, and organized record management.</p>
-                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-                            <div class="bg-brand-600 h-2 rounded-full" style="width: 70%"></div>
-                        </div>
-                    </div>
-
-                    <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Data & Analytics</h3>
-                            <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400">LEARNING</span>
-                        </div>
-                        <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-2 mb-4">
-                            <li>• <strong>SQL:</strong> Database querying & filtering fundamentals</li>
-                            <li>• <strong>Python:</strong> Basic scripting for data analysis</li>
-                            <li>• <strong>Data Visualization:</strong> Principles of charts & reporting</li>
-                        </ul>
-                        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
-                            <div class="bg-amber-500 h-2 rounded-full" style="width: 35%"></div>
+                        <div class="w-full bg-rose-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-rose-200 dark:border-slate-700">
+                            <div class="bg-brand-600 h-full rounded-full transition-all duration-1000 shadow-sm" style="width: 70%"></div>
                         </div>
                     </div>
 
-                    <div class="p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 md:col-span-2 lg:col-span-1">
-                        <div class="flex items-center justify-between mb-3">
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Leadership & Operations</h3>
-                            <span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400">EXPERT STUDENT TRACK</span>
+                    <div class="glass-card p-8 rounded-3xl border border-rose-200 dark:border-slate-800 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-extrabold text-slate-900 dark:text-white text-lg">Data & Querying</h3>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-mono font-extrabold bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30">LEARNING & ACTIVE</span>
+                            </div>
+                            <ul class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-2.5 mb-6 font-mono font-semibold">
+                                <li>• <strong>SQL:</strong> Relational querying, joins & filtering</li>
+                                <li>• <strong>Python:</strong> Basic scripting for data analysis</li>
+                                <li>• <strong>Data Structuring:</strong> Algorithms & arrays</li>
+                            </ul>
                         </div>
-                        <div class="flex flex-wrap gap-1.5">
-                            <span class="px-2.5 py-1 rounded text-xs font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">Educational Campaigns</span>
-                            <span class="px-2.5 py-1 rounded text-xs font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">Event Hosting</span>
-                            <span class="px-2.5 py-1 rounded text-xs font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">Committee Logistics</span>
-                            <span class="px-2.5 py-1 rounded text-xs font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">Public Relations</span>
-                            <span class="px-2.5 py-1 rounded text-xs font-medium bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700">Research & Assessment</span>
+                        <div class="w-full bg-rose-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-rose-200 dark:border-slate-700">
+                            <div class="bg-amber-500 h-full rounded-full transition-all duration-1000 shadow-sm" style="width: 45%"></div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl border border-rose-200 dark:border-slate-800 md:col-span-2 lg:col-span-1 flex flex-col justify-between shadow-lg">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-extrabold text-slate-900 dark:text-white text-lg">Leadership Operations</h3>
+                                <span class="px-3 py-1 rounded-full text-[11px] font-mono font-extrabold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">EXPERT TRACK</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-rose-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">Educational Campaigns</span>
+                                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-rose-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">Event Hosting</span>
+                                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-rose-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">Committee Logistics</span>
+                                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-rose-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">Public Relations</span>
+                                <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-rose-200 dark:border-slate-700 text-slate-800 dark:text-slate-200">Research & Assessment</span>
+                            </div>
+                        </div>
+                        <div class="w-full bg-rose-100 dark:bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-rose-200 dark:border-slate-700">
+                            <div class="bg-emerald-500 h-full rounded-full transition-all duration-1000 shadow-sm" style="width: 90%"></div>
                         </div>
                     </div>
 
@@ -354,175 +479,311 @@
             </div>
         </section>
 
-        <!-- Leadership & Community Involvement Section -->
-        <section id="leadership" class="py-16 border-b border-slate-800/80">
+        <!-- Immersive Experiences & Photo Showcase Section -->
+        <section id="memories" class="py-24 relative overflow-hidden">
+            <!-- Decorative Glow -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-500/10 dark:bg-brand-600/10 blur-[180px] pointer-events-none rounded-full"></div>
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="mb-14 text-center max-w-3xl mx-auto">
+                    <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-2 font-bold">// 03. Immersive Gallery & Highlights</div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Moments in Leadership & Tech</h2>
+                    <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-semibold leading-relaxed">
+                        A visual collection of moments shaping my journey in student leadership, community advocacy, and collaborative tech initiatives.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Experience Card 1: Campaign Head -->
+                    <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group shadow-2xl border border-rose-200 dark:border-slate-800">
+                        <div>
+                            <div class="relative h-64 overflow-hidden bg-rose-100 dark:bg-slate-800">
+                                <img id="exp-img-1" src="campaign.jpeg" alt="Campaign Head Experience" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                                
+                                <div class="absolute top-4 right-4">
+                                </div>
+
+                                <div class="absolute bottom-5 left-5 right-5">
+                                    <span class="px-3 py-1 rounded-full bg-blue-500/30 text-blue-200 border border-blue-500/50 text-[11px] font-mono font-extrabold">2025 – Present</span>
+                                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1.5">Campaign Head</h3>
+                                </div>
+                            </div>
+
+                            <div class="p-7 space-y-3.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-semibold">
+                                <p class="font-mono text-brand-600 dark:text-brand-400 font-extrabold text-xs">PUP CCIS Student Council (People's Advocacies and Campaigns Committee)</p>
+                                <p>
+                                    Spearheading advocacy campaigns, student welfare outreach programs, and organizational initiatives. Responsible for planning strategic educational discussions, policy information drives, and fostering student solidarity across departments.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-7 pb-6 pt-3.5 flex items-center gap-2 border-t border-rose-200/60 dark:border-slate-800 font-mono text-xs text-slate-500 dark:text-slate-400 font-bold">
+                            <i class="fa-solid fa-location-dot text-brand-600 dark:text-brand-400"></i> PUP Sta. Mesa Campus
+                        </div>
+                    </div>
+
+                    <!-- Experience Card 2: Operations Volunteer -->
+                    <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group shadow-2xl border border-rose-200 dark:border-slate-800">
+                        <div>
+                            <div class="relative h-64 overflow-hidden bg-rose-100 dark:bg-slate-800">
+                                <img id="exp-img-2" src="MCC.jpeg" alt="Microsoft x Azure Meetup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                                
+                                <div class="absolute top-4 right-4">
+                                </div>
+
+                                <div class="absolute bottom-5 left-5 right-5">
+                                    <span class="px-3 py-1 rounded-full bg-purple-500/30 text-purple-200 border border-purple-500/50 text-[11px] font-mono font-extrabold">2026 Meetup</span>
+                                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1.5">Operations Volunteer</h3>
+                                </div>
+                            </div>
+
+                            <div class="p-7 space-y-3.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-semibold">
+                                <p class="font-mono text-brand-600 dark:text-brand-400 font-extrabold text-xs">Microsoft Student Community PH x Azure PH</p>
+                                <p>
+                                    Handled backend logistical operations, attendee coordination, registration workflows, and technical support for regional cloud developers and student innovators during the flagship developer meetup.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-7 pb-6 pt-3.5 flex items-center gap-2 border-t border-rose-200/60 dark:border-slate-800 font-mono text-xs text-slate-500 dark:text-slate-400 font-bold">
+                            <i class="fa-solid fa-cloud text-brand-600 dark:text-brand-400"></i> Cloud & Tech Community
+                        </div>
+                    </div>
+
+                    <!-- Experience Card 3: TechShift Event Committee Member -->
+                    <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group shadow-2xl border border-rose-200 dark:border-slate-800">
+                        <div>
+                            <div class="relative h-64 overflow-hidden bg-rose-100 dark:bg-slate-800">
+                                <img id="exp-img-3" src="Techshift.jpeg" alt="TechShift Event Member" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                                
+                                <div class="absolute top-4 right-4">
+                                </div>
+
+                                <div class="absolute bottom-5 left-5 right-5">
+                                    <span class="px-3 py-1 rounded-full bg-cyan-500/30 text-cyan-200 border border-cyan-500/50 text-[11px] font-mono font-extrabold">2025 Event</span>
+                                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1.5">Event Committee Member</h3>
+                                </div>
+                            </div>
+
+                            <div class="p-7 space-y-3.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-semibold">
+                                <p class="font-mono text-brand-600 dark:text-brand-400 font-extrabold text-xs">“TechShift: A Whirlpool of Innovation and Impact.”</p>
+                                <p>
+                                    Collaborated with the Microsoft Campus Club PUP team to coordinate innovation workshops, manage participant workflow, facilitate technical seminar tracks, and handle guest speaker liaison.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-7 pb-6 pt-3.5 flex items-center gap-2 border-t border-rose-200/60 dark:border-slate-800 font-mono text-xs text-slate-500 dark:text-slate-400 font-bold">
+                            <i class="fa-solid fa-lightbulb text-brand-600 dark:text-brand-400"></i> Microsoft Campus Club PUP
+                        </div>
+                    </div>
+
+                    <!-- Experience Card 4: MSM x AI Business Application Community Planning Session -->
+                    <div class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group shadow-2xl border border-rose-200 dark:border-slate-800">
+                        <div>
+                            <div class="relative h-64 overflow-hidden bg-rose-100 dark:bg-slate-800">
+                                <img id="exp-img-4" src="MSM.jpeg" alt="MSM x AI Business Application Planning Session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+                                
+                                <div class="absolute top-4 right-4">
+</div>
+
+                                <div class="absolute bottom-5 left-5 right-5">
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-200 border border-emerald-500/50 text-[11px] font-mono font-extrabold">Community Planning</span>
+                                    <h3 class="text-xl sm:text-2xl font-extrabold text-white mt-1.5">Planning Session Participant</h3>
+                                </div>
+                            </div>
+
+                            <div class="p-7 space-y-3.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-semibold">
+                                <p class="font-mono text-brand-600 dark:text-brand-400 font-extrabold text-xs">MSM x AI Business Application Community Planning Session</p>
+                                <p>
+                                    Engaged in collaborative sessions shaping AI-driven business applications and community framework strategies. Focused on integrating intelligent automation models with student-led operational workflows.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="px-7 pb-6 pt-3.5 flex items-center gap-2 border-t border-rose-200/60 dark:border-slate-800 font-mono text-xs text-slate-500 dark:text-slate-400 font-bold">
+                            <i class="fa-solid fa-brain text-brand-600 dark:text-brand-400"></i> AI & Business Strategy
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Community Involvement Section (All 13 Roles) -->
+        <section id="leadership" class="py-20 bg-white/80 dark:bg-slate-900/40 border-y border-rose-200 dark:border-slate-800/80 backdrop-blur-md">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div>
-                        <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-1">// 03. Experience</div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Leadership & Community Involvement</h2>
+                        <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-1 font-bold">// 04. Comprehensive Record</div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Leadership & Community Involvement</h2>
                     </div>
-                    <span class="text-xs font-mono text-slate-500 dark:text-slate-400">13 Events & Positions</span>
+                    <span class="text-xs font-mono px-4 py-2 rounded-full bg-brand-500/15 text-brand-700 dark:text-brand-300 border border-brand-500/30 font-extrabold shadow-xs">13 Events & Positions</span>
                 </div>
 
-                <!-- 13 Role Cards Grid with Dynamic Accent Colors -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 13 Role Cards Grid with Substance & Polish -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     
                     <!-- 1 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-blue-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-blue-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-blue-600 dark:text-blue-400 font-medium">2025 – Present</span>
-                                <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 text-[10px]">Executive Role</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-blue-700 dark:text-blue-400 font-extrabold">2025 – Present</span>
+                                <span class="px-3 py-0.5 rounded-full bg-blue-500/15 text-blue-800 dark:text-blue-300 border border-blue-500/30 text-[11px] font-extrabold">Executive Role</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Campaign Head</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400">People's Advocacies and Campaigns Committee</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-2">PUP College of Computer and Information Science Student Council</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Campaign Head</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 font-semibold mt-0.5">People's Advocacies and Campaigns Committee</p>
+                            <p class="text-xs text-slate-700 dark:text-slate-300 mt-2.5 font-semibold">PUP College of Computer and Information Science Student Council</p>
                         </div>
                     </div>
 
                     <!-- 2 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-cyan-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-cyan-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-cyan-600 dark:text-cyan-400 font-medium">2025 – Present</span>
-                                <span class="px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20 text-[10px]">Tech Org Lead</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-cyan-700 dark:text-cyan-400 font-extrabold">2025 – Present</span>
+                                <span class="px-3 py-0.5 rounded-full bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border border-cyan-500/30 text-[11px] font-extrabold">Tech Org Lead</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Community Engagement Lead</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">PUP Microsoft Campus Club</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Community Engagement Lead</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">PUP Microsoft Campus Club</p>
                         </div>
                     </div>
 
                     <!-- 3 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-indigo-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-indigo-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-indigo-600 dark:text-indigo-400 font-medium">2025 – Present</span>
-                                <span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border border-indigo-500/20 text-[10px]">Research Head</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-indigo-700 dark:text-indigo-400 font-extrabold">2025 – Present</span>
+                                <span class="px-3 py-0.5 rounded-full bg-indigo-500/15 text-indigo-800 dark:text-indigo-300 border border-indigo-500/30 text-[11px] font-extrabold">Research Head</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Research and Assessment Head</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">PUP The Programmers’ Guild</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Research and Assessment Head</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">PUP The Programmers’ Guild</p>
                         </div>
                     </div>
 
                     <!-- 4 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-amber-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-amber-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-amber-600 dark:text-amber-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20 text-[10px]">Overall Head</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-amber-700 dark:text-amber-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-amber-500/15 text-amber-800 dark:text-amber-300 border border-amber-500/30 text-[11px] font-extrabold">Overall Head</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Overall Head</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">PROJECT ALPAS: Alalay sa Pagbangon at Pag-asa 2026</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Overall Head</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">PROJECT ALPAS: Alalay sa Pagbangon at Pag-asa 2026</p>
                         </div>
                     </div>
 
                     <!-- 5 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-emerald-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-emerald-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-emerald-600 dark:text-emerald-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[10px]">Instructor</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-emerald-700 dark:text-emerald-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-[11px] font-extrabold">Instructor</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Workshop Instructor</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">“Building Student Power: The Role of ICT Students in Social Change.” — <span class="font-mono text-slate-500 dark:text-slate-400">CCISalubong 2026</span></p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Workshop Instructor</h3>
+                            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-1.5 font-semibold">“Building Student Power: The Role of ICT Students in Social Change.” — <span class="font-mono text-slate-500 dark:text-slate-400 font-bold">CCISalubong 2026</span></p>
                         </div>
                     </div>
 
                     <!-- 6 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-teal-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-teal-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-teal-600 dark:text-teal-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-teal-500/10 text-teal-700 dark:text-teal-400 border border-teal-500/20 text-[10px]">Host & Watcher</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-teal-700 dark:text-teal-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-teal-500/15 text-teal-800 dark:text-teal-300 border border-teal-500/30 text-[11px] font-extrabold">Host & Watcher</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Watcher & Host</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">“Ideathon: Advancing ICT For The People.” — <span class="font-mono text-slate-500 dark:text-slate-400">PUP AFK 2026</span></p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Watcher & Host</h3>
+                            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-1.5 font-semibold">“Ideathon: Advancing ICT For The People.” — <span class="font-mono text-slate-500 dark:text-slate-400 font-bold">PUP AFK 2026</span></p>
                         </div>
                     </div>
 
                     <!-- 7 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-pink-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-pink-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-pink-600 dark:text-pink-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-pink-500/10 text-pink-700 dark:text-pink-400 border border-pink-500/20 text-[10px]">Discussion Host</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-pink-700 dark:text-pink-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-pink-500/15 text-pink-800 dark:text-pink-300 border border-pink-500/30 text-[11px] font-extrabold">Discussion Host</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Educational Discussion Host (Week 1)</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">PUP Balik Sinta 2026</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Educational Discussion Host (Week 1)</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">PUP Balik Sinta 2026</p>
                         </div>
                     </div>
 
                     <!-- 8 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-purple-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-purple-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-purple-600 dark:text-purple-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/20 text-[10px]">Volunteer</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-purple-700 dark:text-purple-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-purple-500/15 text-purple-800 dark:text-purple-300 border border-purple-500/30 text-[11px] font-extrabold">Volunteer</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Operations Volunteer</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">Microsoft Student Community PH x Azure PH MEETUP (2026)</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Operations Volunteer</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">Microsoft Student Community PH x Azure PH MEETUP (2026)</p>
                         </div>
                     </div>
 
                     <!-- 9 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-rose-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-rose-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-rose-600 dark:text-rose-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20 text-[10px]">Campaign Committee</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-rose-700 dark:text-rose-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-rose-500/15 text-rose-800 dark:text-rose-300 border border-rose-500/30 text-[11px] font-extrabold">Campaign Committee</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Education and Campaign Committee</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">PUP AFK 2026</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Education and Campaign Committee</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">PUP AFK 2026</p>
                         </div>
                     </div>
 
                     <!-- 10 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-violet-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-violet-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-violet-600 dark:text-violet-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-violet-500/10 text-violet-700 dark:text-violet-400 border border-violet-500/20 text-[10px]">Campaign Committee</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-violet-700 dark:text-violet-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-violet-500/15 text-violet-800 dark:text-violet-300 border border-violet-500/30 text-[11px] font-extrabold">Campaign Committee</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Education and Campaign Committee</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">PUP Balik Sinta 2026</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Education and Campaign Committee</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">PUP Balik Sinta 2026</p>
                         </div>
                     </div>
 
                     <!-- 11 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-orange-500 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-orange-500 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-orange-600 dark:text-orange-400 font-medium">2026</span>
-                                <span class="px-2 py-0.5 rounded bg-orange-500/10 text-orange-700 dark:text-orange-400 border border-orange-500/20 text-[10px]">Campaign Committee</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-orange-700 dark:text-orange-400 font-extrabold">2026</span>
+                                <span class="px-3 py-0.5 rounded-full bg-orange-500/15 text-orange-800 dark:text-orange-300 border border-orange-500/30 text-[11px] font-extrabold">Campaign Committee</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Education and Campaign Committee</h3>
-                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-0.5">CCISalubong 2026</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Education and Campaign Committee</h3>
+                            <p class="text-xs font-mono text-slate-600 dark:text-slate-400 mt-1 font-semibold">CCISalubong 2026</p>
                         </div>
                     </div>
 
                     <!-- 12 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-blue-600 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-blue-600 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-blue-600 dark:text-blue-400 font-medium">2025</span>
-                                <span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 text-[10px]">Research Team</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-blue-700 dark:text-blue-400 font-extrabold">2025</span>
+                                <span class="px-3 py-0.5 rounded-full bg-blue-500/15 text-blue-800 dark:text-blue-300 border border-blue-500/30 text-[11px] font-extrabold">Research Team</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Research and Extension Team</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">“Batch Linus The Leadership Bootcamp” — <span class="font-mono text-slate-500 dark:text-slate-400">PUP The Programmers’ Guild</span></p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Research and Extension Team</h3>
+                            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-1.5 font-semibold">“Batch Linus The Leadership Bootcamp” — <span class="font-mono text-slate-500 dark:text-slate-400 font-bold">PUP The Programmers’ Guild</span></p>
                         </div>
                     </div>
 
                     <!-- 13 -->
-                    <div class="clean-card p-5 rounded-xl border-l-4 border-l-sky-500 md:col-span-2 flex flex-col justify-between space-y-3">
+                    <div class="clean-card p-6 rounded-3xl border-l-6 border-l-sky-500 md:col-span-2 shadow-md flex flex-col justify-between space-y-3">
                         <div>
-                            <div class="flex items-center justify-between text-xs font-mono mb-1.5">
-                                <span class="text-sky-600 dark:text-sky-400 font-medium">2025</span>
-                                <span class="px-2 py-0.5 rounded bg-sky-500/10 text-sky-700 dark:text-sky-400 border border-sky-500/20 text-[10px]">Event Member</span>
+                            <div class="flex items-center justify-between text-xs font-mono mb-2">
+                                <span class="text-sky-700 dark:text-sky-400 font-extrabold">2025</span>
+                                <span class="px-3 py-0.5 rounded-full bg-sky-500/15 text-sky-800 dark:text-sky-300 border border-sky-500/30 text-[11px] font-extrabold">Event Member</span>
                             </div>
-                            <h3 class="font-semibold text-slate-900 dark:text-white text-sm">Event Committee Member</h3>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">“TechShift: A Whirlpool of Innovation and Impact” — <span class="font-mono text-slate-500 dark:text-slate-400">Microsoft Campus Club PUP</span></p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base">Event Committee Member</h3>
+                            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-1.5 font-semibold">“TechShift: A Whirlpool of Innovation and Impact” — <span class="font-mono text-slate-500 dark:text-slate-400 font-bold">Microsoft Campus Club PUP</span></p>
                         </div>
                     </div>
 
@@ -532,60 +793,64 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+        <section id="contact" class="py-20 bg-white/80 dark:bg-slate-900/60 border-t border-rose-200 dark:border-slate-800 backdrop-blur-md">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     
-                    <div class="space-y-4">
-                        <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider">// 04. Contact</div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Get in Touch</h2>
+                    <div class="space-y-5">
+                        <div class="font-mono text-xs text-brand-600 dark:text-brand-400 uppercase tracking-wider mb-1 font-bold">// 05. Direct Connection</div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Get in Touch</h2>
                         
-                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                            Feel free to reach out for leadership inquiries, academic collaborations, or data analytics conversations.
+                        <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-semibold">
+                            Feel free to reach out for leadership inquiries, academic collaborations, data analytics discussions, or student advocacy projects.
                         </p>
 
-                        <div class="space-y-3 pt-2 font-mono text-xs">
-                            <div class="glass-card p-3.5 rounded-lg flex items-center space-x-3 shadow-sm">
-                                <i class="fa-regular fa-envelope text-brand-600 dark:text-brand-400 text-base"></i>
-                                <a href="mailto:judh0709@gmail.com" class="text-slate-700 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">judh0709@gmail.com</a>
+                        <div class="space-y-4 pt-2 font-mono text-xs">
+                            <div class="glass-card p-4.5 rounded-2xl flex items-center space-x-4 shadow-sm border border-rose-200 dark:border-slate-800">
+                                <div class="w-10 h-10 rounded-xl icon-3d flex items-center justify-center text-brand-600 dark:text-brand-400 text-base">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <a href="mailto:judh0709@gmail.com" class="text-slate-800 dark:text-slate-200 hover:text-brand-600 dark:hover:text-brand-400 transition-colors font-bold text-sm">judh0709@gmail.com</a>
                             </div>
 
-                            <div class="glass-card p-3.5 rounded-lg flex items-center space-x-3 shadow-sm">
-                                <i class="fa-solid fa-graduation-cap text-brand-600 dark:text-brand-400 text-base"></i>
-                                <span class="text-slate-700 dark:text-slate-300">PUP College of Computer and Information Science</span>
+                            <div class="glass-card p-4.5 rounded-2xl flex items-center space-x-4 shadow-sm border border-rose-200 dark:border-slate-800">
+                                <div class="w-10 h-10 rounded-xl icon-3d flex items-center justify-center text-brand-600 dark:text-brand-400 text-base">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <span class="text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm">PUP College of Computer and Information Science</span>
                             </div>
                         </div>
 
-                        <div class="pt-2 flex items-center space-x-3">
-                            <a href="https://github.com" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700" title="GitHub">
-                                <i class="fa-brands fa-github text-base"></i>
+                        <div class="pt-3 flex items-center space-x-4">
+                            <a href="https://github.com" target="_blank" rel="noopener" class="p-3.5 rounded-2xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-rose-50 dark:hover:bg-slate-700 transition-all border border-rose-200 dark:border-slate-700 shadow-sm icon-3d hover:-translate-y-1" title="GitHub">
+                                <i class="fa-brands fa-github text-lg"></i>
                             </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="p-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700" title="LinkedIn">
-                                <i class="fa-brands fa-linkedin text-base"></i>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener" class="p-3.5 rounded-2xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-rose-50 dark:hover:bg-slate-700 transition-all border border-rose-200 dark:border-slate-700 shadow-sm icon-3d hover:-translate-y-1" title="LinkedIn">
+                                <i class="fa-brands fa-linkedin text-lg"></i>
                             </a>
                         </div>
                     </div>
 
                     <!-- Contact Form Card -->
-                    <div class="glass-card p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-3.5 font-mono text-xs">
+                    <div class="glass-card p-8 sm:p-10 rounded-3xl border border-rose-200 dark:border-slate-800 shadow-2xl">
+                        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5 font-mono text-xs">
                             <div>
-                                <label for="sender-name" class="block text-slate-700 dark:text-slate-300 mb-1">NAME</label>
-                                <input type="text" id="sender-name" required placeholder="Your name" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none transition-colors">
+                                <label for="sender-name" class="block text-slate-700 dark:text-slate-300 mb-2 font-extrabold">NAME</label>
+                                <input type="text" id="sender-name" required placeholder=" Your name" class="w-full px-4.5 py-3.5 rounded-xl border border-rose-300 dark:border-slate-700 bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none transition-colors backdrop-blur-xs font-medium">
                             </div>
 
                             <div>
-                                <label for="sender-email" class="block text-slate-700 dark:text-slate-300 mb-1">EMAIL</label>
-                                <input type="email" id="sender-email" required placeholder="your.email@example.com" class="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none transition-colors">
+                                <label for="sender-email" class="block text-slate-700 dark:text-slate-300 mb-2 font-extrabold">EMAIL</label>
+                                <input type="email" id="sender-email" required placeholder=" your.email@example.com" class="w-full px-4.5 py-3.5 rounded-xl border border-rose-300 dark:border-slate-700 bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none transition-colors backdrop-blur-xs font-medium">
                             </div>
 
                             <div>
-                                <label for="sender-message" class="block text-slate-700 dark:text-slate-300 mb-1">MESSAGE</label>
-                                <textarea id="sender-message" rows="3" required placeholder="Write your message..." class="w-full px-3.5 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none transition-colors resize-none"></textarea>
+                                <label for="sender-message" class="block text-slate-700 dark:text-slate-300 mb-2 font-extrabold">MESSAGE</label>
+                                <textarea id="sender-message" rows="4" required placeholder=" Write your message..." class="w-full px-4.5 py-3.5 rounded-xl border border-rose-300 dark:border-slate-700 bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none transition-colors resize-none backdrop-blur-xs font-medium"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs transition-colors flex items-center justify-center space-x-1.5 shadow-sm">
+                            <button type="submit" class="w-full py-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-xs sm:text-sm transition-all shadow-lg shadow-brand-500/30 flex items-center justify-center space-x-2 icon-3d hover:-translate-y-1">
                                 <i class="fa-regular fa-paper-plane text-xs"></i>
                                 <span>Send Message</span>
                             </button>
@@ -599,34 +864,34 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-6 bg-slate-900 text-slate-400 text-xs border-t border-slate-800 font-mono">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <footer class="py-8 bg-slate-900 text-slate-400 text-xs border-t border-slate-800 font-mono">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>&copy; 2026 Judh Bryce P. Lobarbio. All rights reserved.</p>
             <p class="text-slate-500">judhbryce.lobarbio.sys</p>
         </div>
     </footer>
 
     <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden transition-all duration-300">
-        <div class="bg-slate-900 text-white px-4 py-3 rounded-lg shadow-lg flex items-center space-x-3 text-xs border border-slate-700 font-mono">
-            <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden transition-all duration-300 translate-y-2 opacity-0">
+        <div class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs border border-slate-700 font-mono backdrop-blur-lg">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
             <span id="toast-msg">Action completed!</span>
         </div>
     </div>
 
     <script>
-        // Photo Preview Handler
-        function previewPhoto(event) {
-            const input = event.target;
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profile-img').src = e.target.result;
-                    showToast('Profile photo updated!');
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        // Custom Star Cursor Script (Increased Size)
+        const cursor = document.getElementById('star-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
 
         // Theme Toggle Setup
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -692,7 +957,13 @@
             toastMsg.innerText = message;
             toast.classList.remove('hidden');
             setTimeout(() => {
-                toast.classList.add('hidden');
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
             }, 3000);
         }
     </script>
